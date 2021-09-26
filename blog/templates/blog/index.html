@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+{% block content %}
+<!-- START CAROUSEL -->
+<div class="carousel carousel-slider center">
+    <div class="carousel-fixed-item center">
+        <button class="waves-effect white grey-text darken-text-2 btn-small">button</button>
+    </div>
+    <div class="carousel-item red white-text" href="#one!">
+        <img src="{% static 'img/parallax.jpg' %}" class="img">
+    </div>
+    <div class="carousel-item amber white-text" href="#two!">
+        <img src="{% static 'img/2.JPG' %}" class="img">
+    </div>
+    <div class="carousel-item green white-text" href="#three!">
+        <img src="{% static 'img/1.JPG' %}" class="img">
+    </div>
+</div>
+<!-- END CAROUSEL -->
+
+<!-- START PROFILE EXCEPTS -->
+<div class="container">
+    <div class="row">
+        <ul class="tabs tabs-fixed-width tab-demo z-depth-1">
+            <li class="tab"><a href="#dept" class="teal-text">Departments</a></li>
+            <li class="tab"><a href="#serv" class="teal-text">Services</a></li>
+        </ul>
+        <div class="col s12 m12 l12" id="dept">
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Central Admin</div>
+                    <div class="collapsible-body">
+                        <span>
+                            Central Administration is headed by the District Coordinating Director (DCD) and is responsible for ensuring
+                            the implementation of governmental policies, projects and programmes at the MMDAs level.
+                            <blockquote>
+                                The department guides policy formulation, planning and decision-making at the District Assembly.
+                            </blockquote>
+                            As part of it's responsibilities, the Central Administration acts as a liaison between Heads of other governmental and 
+                            non-governmental agencies and the District Chief Executive (DCE). It manages financial and other resources of the Assembly in consultation with the DCE.
+                        </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="collapsible-header"><i class="material-icons">filter_drama</i>Finance Department</div>
+                    <div class="collapsible-body">
+                        <span>
+                            The Finance Department leads in the management and use of financial resources to achieve value for money.
+                            This department advices management on the Financial Administration Act, Internal Audit Agency Act, Procurement Act and any other financial
+                            regulations approved by Government and by doing so ensures the maintenance of proper accounts.
+                            <blockquote>
+                                It directs and controls financial management in line with public sector accounting principles thereby safeguarding of the District Assembly's assets.
+                            </blockquote>
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col s12 m12 l12" id="serv">
+            <h3>Services</h3>
+        </div>
+    </div>
+</div>
+<!-- END PROFILE EXCERPTS -->
+
+<!-- START FEATURED POSTS -->
+<div class="container">
+    <div class="row">
+        <h3 class="center">Featured Posts</h3>
+        {% for post in posts %}
+        <div class="col s12 m4 l4">
+            <div class="card large">
+                <div class="card-image">
+                    <img src="{{ post.img.url }}" class="h card-image" alt="...">
+                </div>
+                <div class="card-content">
+                    <a href="{% url 'blog-detail' post.slug %}">
+                        <span class="card-title">{{ post.title }}</span></a>
+                    <div class="divider"></div>
+                    <span><i class="material-icons">person</i> Post by {{ post.author.username }} | {{ post.post_date|date:'d F Y' }}</span>
+                    <div class="divider"></div>
+                    {{ post.body | slice:':100' | safe }}...
+                </div>
+                <div class="card-action">
+                    <a href="{% url 'blog-detail' post.slug %}">Read More</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- <h5 class="center"><a href="#" class="teal darken-3 btn btn-flat btn-large btn-info"><small><span>See all posts</span></small></a></h5> -->
+    </div>
+</div>
+<!-- END FEATURED POSTS -->
+
+<!-- START PARALLAX -->
+<div class="parallax-container">
+    <div class="parallax">
+        <img src="{% static 'img/parallax.jpg' %}">
+    </div>
+</div>
+<!-- END PARALLAX -->
+{% endblock %}

@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 m6 l6">
+            <h5 class="white-text">Category</h5>
+            <ul>
+                {% for categories in cats %}
+                <li>
+                    <a class="grey-text text-lighten-3" href="{% url 'category' categories %}">
+                        {{categories}} <span class="badge teal darken-4">{{categories.category_set.count}}</span>
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="col s12 m6 l6">
+            <h5 class="white-text">Recent Posts</h5>
+            <ul>
+                {% for post in posts %}
+                <img style="width:100px; height:80px" src="{{post.img.url}}">
+                <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}">
+                    <p class="white-text">{{ post.title }}</p>
+                </a>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="footer-copyright grey darken-4">
+    <div class="container">
+        Copyright &copy; {% now "jS F Y H:i" %}
+        <a href="/" class="grey-text text-lighten-4 right">Nanton District Assembly</a>
+    </div>
+</div>

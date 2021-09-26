@@ -1,0 +1,40 @@
+{% load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <title>Nanton District Assembly | {% block title %}{% endblock %}</title>
+          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <header>
+            {% block navbar %}
+                {% include 'navbar.html' %}
+            {% endblock %}
+            {% block mobile_sidebar %}
+                {% include 'mobile.html' %}
+            {% endblock %}
+        </header>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+        <footer class="page-footer teal darken-3">
+            {% block footer %}
+            {% include 'footer.html' %}
+            <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+            <script src="{% static 'js/materialize.js' %}"></script>
+            <script>
+                M.AutoInit();
+                $('.carousel.carousel-slider').carousel({
+                    fullWidth: true,
+                    indicators: true
+                });
+            </script>
+            {% endblock %}
+        </footer>
+    </body>
+</html>
