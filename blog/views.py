@@ -15,6 +15,12 @@ def home(request):
        return render(request, 'blog/index.html', context)
     
     
+def media(request):
+      latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+      cat_list = Categories.objects.all()
+      context = {'latestpost_list': latestpost_list, 'cat_list':cat_list}
+      return render(request, 'blog/media.html', context)
+       
 class blog(ListView):
    model = Post
    template_name = 'blog/blog_list.html'

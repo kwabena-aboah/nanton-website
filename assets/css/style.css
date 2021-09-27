@@ -4,7 +4,53 @@ html, body{
 header, main, footer {
   padding-left: 0px;
 }
-
+.gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-cover {
+    box-shadow: none;
+    pointer-events: none;
+}
+.gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-action, .gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-body, .gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-cover, .gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-header {
+    z-index: 1;
+}
+.gallery-cover {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    width: 100%;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    transition: top .5s;
+    z-index: 2;
+}
+.gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-cover .gradient {
+    background: 0 0;
+    width: 100%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+}
+.gallery-header {
+    position: relative;
+    padding: 20px;
+    background-color: #fff;
+    color: #444;
+}
+.gallery-body {
+    text-align: left;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70%;
+    margin: 0 15%;
+    background-color: #fff;
+}
+.gallery-body .title-wrapper {
+    margin-bottom: 30px;
+}
+.gallery-action {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    right: 15%;
+}
 /* .pinned{
   position: fixed!important;
 } */

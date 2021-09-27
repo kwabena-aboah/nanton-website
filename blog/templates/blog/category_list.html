@@ -13,10 +13,10 @@
                 </div>
                 <div class="card-content">
                     <ul style="list-style-type: none; padding-left: 0px;">
-                        <li><i class="material-icons">cloud</i><a>{{post.category}}</a></li>
-                        <li><i class="material-icons">cloud</i><a>{{ post.comments.all.count }} Comments</a></li>
-                        <li><i class="material-icons">cloud</i><a>Post By {{post.author.username}}</a></li>
-                        <li><i class="material-icons">cloud</i><a>{{post.post_date|date:'d F'}}</a></li>
+                        <li><i class="material-icons">collections</i><a> {{ post.category }}</a></li>
+                        <li><i class="material-icons">comment</i><a> {{ post.comments.all.count }} Comments</a></li>
+                        <li><i class="material-icons">person</i><a> Post By {{ post.author.username }}</a></li>
+                        <li><i class="material-icons">event</i><a> {{ post.post_date|date:'d F' }}</a></li>
                     </ul>
                 </div>
             </div>
