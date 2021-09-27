@@ -4,20 +4,24 @@
 {% block title %}Categories{% endblock %}
 {% block content %}
 <div class="container">
-    {% for post in category_posts %}
-        <div class="card">
-            <div class="card-image">
-                <img src="{{ post.img.url }}" class="h card-image" alt="...">
+    <div class="row">
+        <div class="col s12 m6 l6">
+            {% for post in category_posts %}
+            <div class="card large">
+                <div class="card-image">
+                    <img src="{{ post.img.url }}" class="h card-image" alt="...">
+                </div>
+                <div class="card-content">
+                    <ul style="list-style-type: none; padding-left: 0px;">
+                        <li><i class="material-icons">cloud</i><a>{{post.category}}</a></li>
+                        <li><i class="material-icons">cloud</i><a>{{ post.comments.all.count }} Comments</a></li>
+                        <li><i class="material-icons">cloud</i><a>Post By {{post.author.first_name}}</a></li>
+                        <li><i class="material-icons">cloud</i><a>{{post.post_date | date:'d F'}}</a></li>
+                    </ul>
+                </div>
             </div>
-            <div class="card-content">
-                <ul style="list-style-type: none; padding-left: 0px;">
-                    <li><i class="material-icons">cloud</i><a>{{post.category}}</a></li>
-                    <li><i class="material-icons">cloud</i><a>{{ post.comments.all.count }} Comments</a></li>
-                    <li><i class="material-icons">cloud</i><a>Post By {{post.author.first_name}}</a></li>
-                    <li><i class="material-icons">cloud</i><a>{{post.post_date | date:'d F'}}</a></li>
-                </ul>
-            </div>
+            {% endfor %}
         </div>
-    {% endfor %}
+    </div>
 </div>
 {% endblock %}
