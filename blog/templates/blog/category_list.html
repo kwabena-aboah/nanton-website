@@ -5,8 +5,8 @@
 {% block content %}
 <div class="container">
     <div class="row">
+        {% for post in category_posts %}
         <div class="col s12 m6 l6">
-            {% for post in category_posts %}
             <div class="card large">
                 <div class="card-image">
                     <img src="{{ post.img.url }}" class="h card-image" alt="...">
@@ -20,8 +20,31 @@
                     </ul>
                 </div>
             </div>
-            {% endfor %}
         </div>
+        {% endfor %}
+    </div>
+    <div>
+        <ul class="pagination">
+            {% if category_posts.has_previous %}
+            <li class="waves-effect"><a href="?page=1"><i class="material-icons">chevon_left</i></a></li>
+            <li class="waves-effect"><a href="?page={{ category_posts.previous_page_number }}"><i
+                        class="material-icons">chevon_left</i></a></li>
+            {% endif %}
+            {% for num in category_posts.paginator.page_range %}
+            {% if num == category_posts.number %}
+            <li class="waves-effect"><a href="?page={{num}}">{{num}}</a></li>
+            {% elif num > category_posts.number|add:'-2' and num < category_posts.number|add:'2' %} 
+            <li class="waves-effect"><a
+                    href="?page={{num}}">{{num}}</a></li>
+                {% endif %}
+                {% endfor %}
+                {% if category_posts.has_next %}
+                <li class="waves-effect"><a href="?page={{category_posts.next_page_number}}"><i
+                            class="material-icons">chevon_right</i></a></li>
+                <li class="waves-effect"><a href="?page={{ category_posts.paginator.num_pages }}"><i
+                            class="material-icons">chevon_right</i></a></li>
+                {% endif %}
+        </ul>
     </div>
 </div>
 {% endblock %}
