@@ -31,13 +31,15 @@
             <div class="card large">
                 <div class="card-content">
                     <ul>
-                        <h6>Related</h6>
-                        {% for post in latestpost_list %}
-                        <img style="width:100px; height:80px" src="{{post.img.url}}">
-                        <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}">
-                            <span class="teal-text darken-3 center">{{ post.title }}</span>
-                        </a>
-                        {% endfor %}
+                        <li class="center">
+                            <h6>Related</h6>
+                            {% for post in latestpost_list %}
+                            <img style="width:100px; height:80px" src="{{post.img.url}}">
+                            <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}">
+                                <span class="teal-text darken-3 center">{{ post.title }}</span>
+                            </a>
+                            {% endfor %}
+                        </li>
                     </ul>
                 </div>
             </div>
