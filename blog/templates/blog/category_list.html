@@ -15,8 +15,8 @@
                     <ul style="list-style-type: none; padding-left: 0px;">
                         <li><i class="material-icons">cloud</i><a>{{post.category}}</a></li>
                         <li><i class="material-icons">cloud</i><a>{{ post.comments.all.count }} Comments</a></li>
-                        <li><i class="material-icons">cloud</i><a>Post By {{post.author.first_name}}</a></li>
-                        <li><i class="material-icons">cloud</i><a>{{post.post_date | date:'d F'}}</a></li>
+                        <li><i class="material-icons">cloud</i><a>Post By {{post.author.username}}</a></li>
+                        <li><i class="material-icons">cloud</i><a>{{post.post_date|date:'d F'}}</a></li>
                     </ul>
                 </div>
             </div>
