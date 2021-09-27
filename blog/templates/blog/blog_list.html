@@ -4,7 +4,6 @@
 {% block content %}
 <div class="container">
     <div class="row">
-        <h3>Featured</h3>
         {% for post in posts %}
             <div class="col s12 m6 l6">
                 <div class="card">
@@ -25,28 +24,32 @@
                 </div>
             </div>
         {% endfor %}
-        <ul class="pagination">
-            {% if is_paginated %}
-            {% if page_obj.has_previous %}
-            <li class="waves-effect"><a href="?page=1"><i class="material-icons">chevon_left</i></a></li>
-            <li class="waves-effect"><a href="?page={{ page_obj.previous_page_number }}"><i
-                        class="material-icons">chevon_left</i></a></li>
-            {% endif %}
-            {% for num in page_obj.paginator.page_range %}
-            {% if num == page_obj.number %}
-            <li class="waves-effect"><a href="?page={{num}}">{{num}}</a></li>
-            {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %} <li class="waves-effect"><a
-                    href="?page={{num}}">{{num}}</a></li>
-                {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                <li class="waves-effect"><a href="?page={{page_obj.next_page_number}}"><i
-                            class="material-icons">chevon_right</i></a></li>
-                <li class="waves-effect"><a href="?page={{ page_obj.paginator.num_pages }}"><i
-                            class="material-icons">chevon_right</i></a></li>
-                {% endif %}
-                {% endif %}
-        </ul>
+        
     </div>
+</div>
+
+<div>
+    <ul class="pagination">
+        {% if is_paginated %}
+        {% if page_obj.has_previous %}
+        <li class="waves-effect"><a href="?page=1"><i class="material-icons">chevon_left</i></a></li>
+        <li class="waves-effect"><a href="?page={{ page_obj.previous_page_number }}"><i
+                    class="material-icons">chevon_left</i></a></li>
+        {% endif %}
+        {% for num in page_obj.paginator.page_range %}
+        {% if num == page_obj.number %}
+        <li class="waves-effect"><a href="?page={{num}}">{{num}}</a></li>
+        {% elif num > page_obj.number|add:'-2' and num < page_obj.number|add:'2' %} <li class="waves-effect"><a
+                href="?page={{num}}">{{num}}</a></li>
+            {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+            <li class="waves-effect"><a href="?page={{page_obj.next_page_number}}"><i
+                        class="material-icons">chevon_right</i></a></li>
+            <li class="waves-effect"><a href="?page={{ page_obj.paginator.num_pages }}"><i
+                        class="material-icons">chevon_right</i></a></li>
+            {% endif %}
+            {% endif %}
+    </ul>
 </div>
 {% endblock %}

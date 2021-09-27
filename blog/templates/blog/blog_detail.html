@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{post.title_tag}}{% endblock %}
+<!-- {{post.img.url}} -->
+{% block content %}
+<div class="parallax-container" style="height: 300px;">
+    <div class="parallax">
+        <img src="{{post.img.url}}">
+    </div>
+    <h3 class="white-text light-green-text center">{{ post.title }}</h3>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m9 l9">
+            <div class="card large">
+                <div class="card-content">
+                    <span class="card-title">{{ post.title }}</span>
+                    <div class="divider"></div>
+                    <span>{{ post.category }}</span> | 
+                    <span>Post by {{ post.author.username }}</span> |
+                    <span>{{post.post_date|date:'d F'}}</span> |
+                    <span>{{ post.comments.all.count }} Comments</span>
+                    <div class="divider"></div>
+                    <p class="flow-text">{{ post.body | safe }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col s12 m3 l3">
+            <div class="card large">
+                <div class="card-content">
+                    <ul>
+                        <h6>Related</h6>
+                        {% for post in latestpost_list %}
+                        <img style="width:100px; height:80px" src="{{post.img.url}}">
+                        <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}">
+                            <span class="teal-text darken-3 center">{{ post.title }}</span>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col s12 m12 l12">
+            {% if not request.user.is_authenticated %}
+            <div class="red-text darken-3">To comment, first <a href="/login">log in</a> to your account</div>
+            {% endif %}
+        </div>
+        <div class="col s12 m12 l12">
+            {% if request.user.is_authenticated %}
+            <div class="card">
+                <div class="card-content">
+                    <form action="{% url 'send_comment' post.slug %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="post_id" value="{{ post.id }}">
+                        <textarea name="message" cols="120" rows="10"></textarea>
+                        <button type="submit" class="btn btn-lg btn-dark">Add Comment</button>
+                    </form>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+        <div class="col s12 m12 l12">
+            <div class="card-content">
+                <div class="card">
+                    {% for comment in post.comments.all %}
+                    <div class="alert alert-success">
+                        <h4>Commented by <strong>{{ comment.sender.first_name}}</strong></h4>
+                        <p>Comment: <strong>{{ comment.message }}</strong></p>
+                    </div>
+                    {% empty %}
+                    <div class="orange-text darken-3">There are no comments</div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

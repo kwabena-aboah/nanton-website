@@ -3,7 +3,7 @@
         <div class="col s12 m6 l6">
             <h5 class="white-text">Category</h5>
             <ul>
-                {% for categories in cats %}
+                {% for categories in cat_list %}
                 <li>
                     <a class="grey-text text-lighten-3" href="{% url 'category' categories %}">
                         {{categories}} <span class="badge teal darken-4">{{categories.category_set.count}}</span>
@@ -15,7 +15,7 @@
         <div class="col s12 m6 l6">
             <h5 class="white-text">Recent Posts</h5>
             <ul>
-                {% for post in posts %}
+                {% for post in latestpost_list %}
                 <img style="width:100px; height:80px" src="{{post.img.url}}">
                 <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}">
                     <p class="white-text">{{ post.title }}</p>
