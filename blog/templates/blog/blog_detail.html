@@ -34,7 +34,7 @@
                         <li class="center">
                             <h6>Related</h6>
                             {% for post in latestpost_list %}
-                            <img style="width:100px; height:80px" src="{{post.img.url}}" class="center">
+                            <img style="width:100px; height:80px" src="{{post.img.url}}" class="center"><br>
                             <a style="text-decoration:none;" href="{% url 'blog-detail' post.slug %}" class="center">
                                 <span class="teal-text darken-3 center">{{ post.title }}</span>
                             </a>
