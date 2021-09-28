@@ -5,10 +5,12 @@
 {% block title %}Media{% endblock %}
 
 {% block content %}
+
     <div class="container">
         <div class="row">
+           <h3>Media and Gallery</h3>
             {% for post in latestpost_list %}
-            <div class="col s12 m6 l4 gallery-item gallery-expand gallery-filter materialboxed" data-fillscreen="true"
+            <div class="col s12 m6 l4 gallery-item gallery-expand gallery-filter materialboxed {{ post.category }}" data-fillscreen="true"
                 style="position: relative;">
                 <div class="gallery-curve-wrapper">
                     <a class="gallery-cover gray">
@@ -24,7 +26,7 @@
                         </div>
                     </div>
                     <div class="gallery-action" style="top: 184px;">
-                        <a href="{% url 'blog-detail' post.slug %}" class="btn-floating btn-large waves-effect waves-light" style="background-color: rgb(182, 162, 135);">
+                        <a href="{% url 'blog-detail' post.slug %}" class="btn-floating btn-large waves-effect waves-light" style="background-color: rgb(219, 179, 70);">
                             <i class="material-icons">favorite
                             </i></a>
                     </div>
