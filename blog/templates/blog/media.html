@@ -10,18 +10,18 @@
         <div class="row">
            <h3>Media and Gallery</h3>
             {% for post in latestpost_list %}
-            <div class="col s12 m6 l4 gallery-item gallery-expand gallery-filter materialboxed {{ post.category }}" data-fillscreen="true"
+            <div class="col s12 m6 l4 gallery-item gallery-expand gallery-filter materialboxed" data-fillscreen="true"
                 style="position: relative;">
                 <div class="gallery-curve-wrapper">
                     <a class="gallery-cover transparent">
                         <img class="responsive-img" src="{{ post.img.url }}" alt="{{ post.title }}">
                     </a>
                     <div class="gallery-header">
-                        <span>{{ post.category }}</span>
+                        <span>{{ post.title }}</span>
                     </div>
                     <div class="gallery-body" style="margin-top: 184px; padding: 40px; min-height: 505px; display: none;">
                         <div class="title-wrapper">
-                            <h3>{{ post.title }}</h3>
+                            <h3>{{ post.category }}</h3>
                             <span class="price">{{ post.body | slice:':150' | safe }}...</span>
                         </div>
                     </div>
