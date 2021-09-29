@@ -19,14 +19,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from graphene_django.views import GraphQLView
 from blog.schema import schema
-from users import views as user_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
+    path('users/', include('users.urls')),
     path('graphql/', GraphQLView.as_view(graphiql=True)),
-    path('register/', user_views.register, name='register'),
-    path('login/', user_views.login, name='login'),
-    path('logout/', user_views.logout, name='logout'),
 ]
 urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

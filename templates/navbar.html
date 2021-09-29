@@ -4,14 +4,27 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger" style="font-size: 40px;"><i
                 class="material-icons">reorder</i></a>
         <ul class="right hide-on-med-and-down">
-            <!-- <li>
-                <a href="#"><i class="material-icons">notifications</i></a>
-            </li> -->
+            {% if user.is_authenticated %}
             <li>
-                <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Accounts"><i class="material-icons">person</i></a>
+                <a href="#" class="tooltipped" data-position="bottom" data-tooltip="{{ user.username }}"><i class="material-icons">person</i></a>
+            </li>
+            {% else %}
+            <li>
+                <a href="{% url 'login' %}" class="tooltipped" data-position="bottom" data-tooltip="Login"><i class="material-icons">supervisor_account</i></a>
             </li>
             <li>
-                <a href="#" class="tooltipped" data-position="bottom" data-tooltip="Login"><i class="material-icons">lock_open</i></a>
+                <a href="{% url 'register' %}" class="tooltipped" data-position="bottom" data-tooltip="Signup"><i
+                        class="material-icons">person_add</i></a>
+            </li>
+            {% endif %}
+            <li>
+                <form action="">
+                    <div class="input-field">
+                        <input type="search" id="search" required>
+                        <label for="search" class="label-icon"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
             </li>
         </ul>
     </div>

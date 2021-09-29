@@ -3,29 +3,43 @@
     <li>
         <div class="user-view">
             <div class="background">
-                <img src="{% static 'img/screenshot.png' %}" class="center">
+                <img src="{% static 'img/parallax.jpg' %}" class="center">
             </div>
+            {% if user.authenticated %}
             <a href="#user"><img class="circle" src="#"></a>
-            <a href="#name"><span class="white-text name">John Doe</span></a>
-            <a href="#email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            <a href="#name"><span class="white-text name">Hello, {{ user.username }}</span></a>
+            {% else %}
+            <a href="{% url 'login' %}"><span class="white-text email">Login</span></a>
+            <a href="{% url 'register' %}"><span class="white-text email">Signup</span></a>
+            {% endif %}
         </div>
     </li>
     <li>
         <div class="divider"></div>
     </li>
     <li>
-        <a href="/"><i class="material-icons">dashboard</i> Home</a>
+        <a href="/"><i class="material-icons">home</i> Home</a>
     </li>
     <li>
-        <a href="#"><i class="material-icons">inbox</i> Profile</a>
+        <a href="#"><i class="material-icons">info</i> Profile</a>
     </li>
     <li>
-        <a href="#"><i class="material-icons">directions_bike</i> Blog</a>
+        <a href="{% url 'blog' %}"><i class="material-icons">announcement</i> Blog</a>
     </li>
     <li>
-        <a href="#"><i class="material-icons">directions_bike</i> Media</a>
+        <a href="{% url 'media' %}"><i class="material-icons">add_a_photo</i> Media</a>
     </li>
     <li>
-        <a href="#"><i class="material-icons">directions_bike</i> Contact</a>
+        <a href="#"><i class="material-icons">chat</i> Contact</a>
+    </li>
+    <div class="divider"></div>
+    <li>
+        <form action="">
+            <div class="input-field">
+                <input type="search" id="search" required>
+                <label for="search" class="label-icon"><i class="material-icons">search</i></label>
+                <i class="material-icons">close</i>
+            </div>
+        </form>
     </li>
 </ul>
