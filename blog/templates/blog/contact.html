@@ -3,14 +3,17 @@
 {% block title %} Contact Us {% endblock %}
 
 {% block content %}
-<h3 class="center">Contact Us</h3>
-
-<div id="map"></div>
+<!-- <div id="map"></div> -->
+<iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.607121373979!2d-0.7366143855663783!3d9.542820383357864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfd437470241824d%3A0xee9599d201c512e0!2sNanton%20District%20Assembly!5e0!3m2!1sen!2sgh!4v1633198784042!5m2!1sen!2sgh"
+    width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    <h3 class="center">Contact Us</h3>
 <div class="container">
     <div class="row">
         <div class="col s12 m12 l12">
             <div class="card">
                 <div class="card-content">
+
                     <form method="post">
                         {% csrf_token %}
                         {{ form.as_p }}

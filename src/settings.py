@@ -37,8 +37,16 @@ ADMINS = [
 
 MANAGERS = ADMINS
 
-DEFAULT_FROM_EMAIL = 'mintahkwabena13@gmail.com'
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = config('EMAIL_HOST_USER') # your email address here
+EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD') # your password goes here
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+DEFAULT_FROM_EMAIL = 'Admin<admin@127.0.0.1:8000>'
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Application definition
 
