@@ -27,12 +27,30 @@
             {% include 'footer.html' %}
             <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
             <script src="{% static 'js/materialize.js' %}"></script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap&libraries=&v=weekly" async></script>
             <script>
                 M.AutoInit();
                 $('.carousel.carousel-slider').carousel({
                     fullWidth: true,
                     indicators: true
                 });
+            </script>
+            <script>
+                // Initialize and add the map
+                function initMap(){
+                    // The location of Nanton
+                    const nanton = { lat: -0.7366144, lng: 9.5428204 };
+                    // The map, centered at nanton
+                    const map = new google.maps.Map(document.getElementById("map"), {
+                        zoom: 4,
+                        center: nanton,
+                    });
+                    // The marker, positioned at nanton
+                    const marker = new google.maps.Marker({
+                        position: nanton,
+                        map: map,
+                    });
+                }
             </script>
             {% endblock %}
         </footer>

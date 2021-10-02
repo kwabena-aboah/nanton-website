@@ -37,6 +37,8 @@ ADMINS = [
 
 MANAGERS = ADMINS
 
+DEFAULT_FROM_EMAIL = 'mintahkwabena13@gmail.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
@@ -160,7 +162,7 @@ MEDIA_ROOT = BASE_DIR / 'Media'
 DEBUG_PROPAGATE_EXCEPTIONS = True
 COMPRESS_ENABLED = os.environ.get('COMPRESS_ENABLED', False)
 
-DEBUG = False
+# DEBUG = False
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 USE_X_FORWARDED_PORT = True
 

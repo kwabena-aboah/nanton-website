@@ -27,7 +27,7 @@
                 </div>
             </div>
         </div>
-        <div class="col s12 m3 l3">
+        <div class="col s12 m3 l3 hide-on-med-and-down">
             <div class="card large">
                 <div class="card-content">
                     <ul>
@@ -51,18 +51,18 @@
     <div class="row">
         <div class="col s12 m12 l12">
             {% if not request.user.is_authenticated %}
-            <div class="red-text darken-3">To comment, first <a href="/login">log in</a> to your account</div>
+            <div class="red-text darken-3">To comment, first <a href="{% url 'login' %}">log in</a> to your account</div>
             {% endif %}
         </div>
         <div class="col s12 m12 l12">
             {% if request.user.is_authenticated %}
-            <div class="card">
+            <div class="card small">
                 <div class="card-content">
                     <form action="{% url 'send_comment' post.slug %}" method="POST">
                         {% csrf_token %}
                         <input type="hidden" name="post_id" value="{{ post.id }}">
                         <textarea name="message" cols="120" rows="10"></textarea>
-                        <button type="submit" class="btn btn-lg btn-dark">Add Comment</button>
+                        <button type="submit" class="col s12 m12 l12 btn btn-large waves-effect teal darken-3 white-text">Add Comment</button>
                     </form>
                 </div>
             </div>
@@ -73,8 +73,8 @@
                 <div class="card">
                     {% for comment in post.comments.all %}
                     <div class="alert alert-success">
-                        <h4>Commented by <strong>{{ comment.sender.first_name}}</strong></h4>
-                        <p>Comment: <strong>{{ comment.message }}</strong></p>
+                        <h5>Commented by <strong>{{ comment.sender.username }}</strong></h5>
+                        <blockquote>Comment: <strong>{{ comment.message }}</strong></blockquote>
                     </div>
                     {% empty %}
                     <div class="orange-text darken-3">There are no comments</div>

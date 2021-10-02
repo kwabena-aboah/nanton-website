@@ -1,11 +1,15 @@
 from django.http.response import HttpResponse
 from django.shortcuts import redirect, render
 from django.views.generic import ListView, DetailView
-from .models import Post, Categories, PostComment
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import HttpResponseNotFound, Http404
+from django.http import Http404
+from django.core.mail import send_mail, BadHeaderError
+from django.contrib import messages
+from .models import Post, Categories, PostComment
+from .forms import ContactForm
+
 
 # Create your views here.
 def home(request):
@@ -84,3 +88,20 @@ def send_comment(request, slug):
    post = Post.objects.filter(id=post_id).first()
    post.comments.add(post_comment)
    return redirect('.')
+
+
+def contactView(request):
+    if request.method == 'GET':
+        form = ContactForm()
+    else:
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            from_email = form.cleaned_data['from_email']
+            message = form.cleaned_data['message']
+            try:
+                send_mail(subject, message, from_email, ['admin@example.com'])
+            except BadHeaderError:
+                return HttpResponse('Invalid header found.')
+            return messages.info(request, 'Success! Thank you for your message.')
+    return render(request, "blog/contact.html", {'form': form})

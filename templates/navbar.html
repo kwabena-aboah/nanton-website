@@ -8,13 +8,13 @@
             <li>
                 <a href="#" class="tooltipped" data-position="bottom" data-tooltip="{{ user.username }}"><i class="material-icons">person</i></a>
             </li>
+            <li>
+                <a href="{% url 'logout' %}" class="tooltipped" data-position="bottom" data-tooltip="Logout"><i
+                        class="material-icons">lock</i></a>
+            </li>
             {% else %}
             <li>
                 <a href="{% url 'login' %}" class="tooltipped" data-position="bottom" data-tooltip="Login"><i class="material-icons">supervisor_account</i></a>
-            </li>
-            <li>
-                <a href="{% url 'register' %}" class="tooltipped" data-position="bottom" data-tooltip="Signup"><i
-                        class="material-icons">person_add</i></a>
             </li>
             {% endif %}
             <li>
@@ -34,7 +34,7 @@
                 <a href="/" target="_self"> Home</a>
             </li>
             <li class="tab">
-                <a href="#"> Profile</a>
+                <a href="#" target="_self"> Profile</a>
             </li>
             <li class="tab">
                 <a href="{% url 'blog' %}" target="_self"> Blog</a>
@@ -43,7 +43,7 @@
                 <a href="{% url 'media' %}" target="_self"> Media</a>
             </li>
             <li class="tab">
-                <a href="#"> Contact</a>
+                <a href="{% url 'contact' %}" target="_self"> Contact</a>
             </li>
         </ul>
     </div>

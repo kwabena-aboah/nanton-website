@@ -1,0 +1,136 @@
+<html>
+{% load static %}
+
+<head>
+    <title>{% block title %}Register{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+
+        body {
+            background: url({% static 'img/parallax.jpg' %}) center #fff;
+        }
+
+        .input-field input[type=date]:focus+label,
+        .input-field input[type=text]:focus+label,
+        .input-field input[type=email]:focus+label,
+        .input-field input[type=password]:focus+label {
+            color: #e91e63;
+        }
+
+        .input-field input[type=date]:focus,
+        .input-field input[type=text]:focus,
+        .input-field input[type=email]:focus,
+        .input-field input[type=password]:focus {
+            border-bottom: 2px solid #e91e63;
+            box-shadow: none;
+        }
+    </style>
+</head>
+{% block content %}
+
+{% for message in messages %}
+<script>
+    var toastHTML = '{{ message }}';
+    M.toast({ html: toastHTML, classes: 'red darken-3' });
+</script>
+{% endfor %}
+
+<body>
+    <div class="section"></div>
+    <main>
+        <center>
+            <h3 class="white-text z-depth-3">Nanton District Assembly</h3>
+            <div class="section"></div>
+
+            <div class="container">
+                <div class="con z-depth-1 grey lighten-4 row"
+                    style="display: inline-block; padding: 32px 80px 10px 80px; border: 1px solid #EEE;">
+
+                    <h5 class="teal-text">New registration.</h5>
+                    <div class="section"></div>
+
+                    <form class="col s12 m12 l12" method="post">
+                        {% csrf_token %}
+                        <div class='row'>
+                            <div class='col s12 m12 l12'>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='text' placeholder="Enter First name" name="first_name" />
+                                <label for='first_name'>Enter First Name</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='text' placeholder="Enter Last Name" name="last_name" />
+                                <label for='last_name'>Enter Last Name</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='text' placeholder="Enter Username" name="username"
+                                    id='username' />
+                                <label for='username'>Enter Username</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='email' placeholder="Enter Email" name="email" />
+                                <label for='email'>Enter Email</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='password' name='password1'
+                                    placeholder="Password" />
+                                <label for='password'>Enter your password</label>
+                            </div>
+                        </div>
+
+                        <div class='row'>
+                            <div class='input-field col s12 m12 l12'>
+                                <input class='validate' type='password' name='password2' placeholder="Confirm Password" />
+                                <label for='password'>Confirm your password</label>
+                            </div>
+                        </div>
+
+                        <br />
+                        <center>
+                            <div class='row'>
+                                <button type='submit' name='btn_login'
+                                    class='col s12 m12 l12 btn btn-large waves-effect teal darken-3'>Register</button>
+                            </div>
+                        </center>
+                    </form>
+                    Already with account? Please <a href="{% url 'login' %}">login</a> here.<br>
+                </div>
+            </div>
+        </center>
+
+        <div class="section"></div>
+        <div class="section"></div>
+    </main>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+</body>
+{% endblock %}
+
+</html>

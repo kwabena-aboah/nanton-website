@@ -37,6 +37,8 @@ ADMINS = [
 
 MANAGERS = ADMINS
 
+DEFAULT_FROM_EMAIL = 'will@learndjango.com'
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
 
@@ -49,6 +51,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     #custom apps
     'blog',
+    'users',
     #third-party apps
     'ckeditor',
     'graphene_django',
@@ -194,7 +197,8 @@ LOGGING = {
 }
 
 DEFAULT_FILE_STORAGE = 'storages.backends.dropbox.DropBoxStorage'
-DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+# DEFAULT_FILE_STORAGE = 'django.core.files.storage.FileSystemStorage'
+
 DROPBOX_OAUTH2_TOKEN = config('DROPBOX_OAUTH2_TOKEN')
 DROPBOX_CONSUMER_KEY = config('DROPBOX_CONSUMER_KEY')
 DROPBOX_CONSUMER_SECRET = config('DROPBOX_CONSUMER_SECRET')
