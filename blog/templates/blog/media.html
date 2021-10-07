@@ -34,5 +34,21 @@
             </div>
             {% endfor %}
         </div>
+
+        <div style="background: fff;">
+            <div class="row">
+                <h3>Videos</h3>
+                {% for video in videos %}
+                {% if video.file %}
+                <div class="col s12 m4 l4 center">
+                    <video autoplay="autoplay" preload="preload" class="responsive-video" controls>
+                        <source src="{{ video.file.url }}" type="video/mp4">
+                    </video>
+                </div>
+                {% endif %}
+                {% endfor %}
+                <!-- <h5 class="center"><a href="#" class="teal darken-3 btn btn-flat btn-large btn-info"><small><span>See all posts</span></small></a></h5> -->
+            </div>
+        </div>
     </div>
 {% endblock %}
