@@ -4,26 +4,51 @@
 
 {% block content %}
 <!-- <div id="map"></div> -->
+{% if msg %} {% autoescape off %} <span class="teal white-text darken-3">{{ msg }}</span> {% endautoescape %} {% endif %}
 <iframe
     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3934.607121373979!2d-0.7366143855663783!3d9.542820383357864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfd437470241824d%3A0xee9599d201c512e0!2sNanton%20District%20Assembly!5e0!3m2!1sen!2sgh!4v1633198784042!5m2!1sen!2sgh"
     width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    <h3 class="center">Contact Us</h3>
-<div class="container">
-    <div class="row">
-        <div class="col s12 m12 l12">
-            <div class="card">
-                <div class="card-content">
 
-                    <form method="post">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <div class="form-actions">
-                            <button type="submit" class="btn btn-flat btn-default btn-large waves-effect teal darken-3 white-text">Send</button>
+    <div class="container" style="margin-top:90px;">
+    <div class="card-panel z-depth-5">
+        <div class="row">
+            <div class="col s12 m12">
+                <h3 class="center">Contact Us</h3>
+                <div class="row">
+                    <form class="col s12 m12" method="post" action="{% url 'contact' %}">
+                        <div class="row">
+                            {% csrf_token %}
+                            <!-- {{ form.as_p }} -->
+                            <div class="input-field col s12 m12">
+                                <input id="id_from_email" type="email" class="validate" name="from_email" required>
+                                <label for="id_from_email">Email</label>
+                            </div>
+
+                            <div class="input-field col s12 m12">
+                                <input id="id_subject" type="text" class="validate" name="subject" required>
+                                <label for="id_subject">Subject</label>
+                            </div>
+
+                            <div class="input-field col s12 m12">
+                                <textarea class="materialize-textarea" name="message" required></textarea>
+                                <label for="id_message">Message</label>
+                            </div>
+
+
                         </div>
+                        <!--row-->
                     </form>
+
                 </div>
+                <!--row-->
+                <button class="btn waves-effect waves-light center" type="submit" name="submit">Send your message</button>
             </div>
+            <!--col-->
+        
         </div>
+        <!--row-->
     </div>
+    <!--card-->
 </div>
+<!--conatiner-->
 {% endblock %}

@@ -4,6 +4,14 @@ html, body{
 header, main, footer {
   padding-left: 0px;
 }
+.slider ul.indicators li.indicator-item.active {
+  background-color: #ab47bc;
+}
+
+.slider ul.indicators li.indicator-item
+{
+	background-color:#C2BDBD;
+}
 .gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-cover {
     box-shadow: none;
     pointer-events: none;
@@ -19,7 +27,6 @@ header, main, footer {
     -webkit-transform-origin: 0 0;
     transform-origin: 0 0;
     transition: top .5s;
-    z-index: 2;
 }
 .gallery-expand[data-fillscreen=true] .gallery-curve-wrapper .gallery-cover .gradient {
     background: 0 0;

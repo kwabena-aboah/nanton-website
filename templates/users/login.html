@@ -1,107 +1,69 @@
+<!DOCTYPE html>
 <html>
 {% load static %}
+
 <head>
     <title>{% block title %}Login{% endblock %}</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
-    <style>
-        body {
-            display: flex;
-            min-height: 100vh;
-            flex-direction: column;
-        }
-
-        main {
-            flex: 1 0 auto;
-        }
-
-        body {
-            background: url({% static 'img/parallax.jpg' %}) center #fff;
-        }
-
-        .input-field input[type=date]:focus+label,
-        .input-field input[type=text]:focus+label,
-        .input-field input[type=email]:focus+label,
-        .input-field input[type=password]:focus+label {
-            color: #e91e63;
-        }
-
-        .input-field input[type=date]:focus,
-        .input-field input[type=text]:focus,
-        .input-field input[type=email]:focus,
-        .input-field input[type=password]:focus {
-            border-bottom: 2px solid #e91e63;
-            box-shadow: none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="{% static 'font-awesome-4.3.0/css/font-awesome.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/materialize.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
 </head>
 {% block content %}
 
 {% for message in messages %}
-    <script>
+<!-- <script>
         var toastHTML = '{{ message }}';
         M.toast({html: toastHTML, classes: 'red darken-3'});
-    </script>
+    </script> -->
+<h3 style="margin-top: 10px;" class="red darken-4">{{ message }}</h3>
 {% endfor %}
-    <body>
-        <div class="section"></div>
-        <main>
-            <center>
-                <h3 class="white-text z-depth-3">Nanton District Assembly</h3>
-                <div class="section"></div>
-    
-                <div class="container">
-                    <div class="con z-depth-1 grey lighten-4 row"
-                        style="display: inline-block; padding: 32px 80px 10px 80px; border: 1px solid #EEE;">
 
-                        <h5 class="teal-text">Please, login into your account</h5>
-                        <div class="section"></div>
-
-                        <form class="col s12 m12 l12" method="post">
+<body class="teal darken-3" style="background: url('{% static 'img/parallax.jpg' %}');">
+    <div class="container" style="margin-top:90px;">
+        <div class="row">
+            <div class="col s12 m6 offset-m3">
+                <div class="card-panel z-depth-5">
+                    <h4 class="center"> Welcome &#128512;</h4>
+                    <div class="row">
+                        <form class="col s12 m12" action="" method="POST">
                             {% csrf_token %}
-                            <div class='row'>
-                                <div class='col s12 m12 l12'>
+                            <div class="row">
+                                <div class="input-field col s12 m12">
+                                    <input class='validate' type='text' placeholder="Enter username" name="username"
+                                        id='username' />
+                                    <label for="username">Username</label>
+                                </div>
+
+                                <div class="input-field col s12 m12">
+                                    <input class='validate' type='password' name='password' id='password'
+                                        placeholder="Password" />
+                                    <label for="password">Password</label>
                                 </div>
                             </div>
-    
-                            <div class='row'>
-                                <div class='input-field col s12 m12 l12'>
-                                    <input class='validate' type='text' placeholder="Enter username" name="username" id='username' />
-                                    <label for='username'>Enter Username</label>
-                                </div>
-                            </div>
-    
-                            <div class='row'>
-                                <div class='input-field col s12 m12 l12'>
-                                    <input class='validate' type='password' name='password' id='password' placeholder="Password"/>
-                                    <label for='password'>Enter your password</label>
-                                </div>
-                                <!-- <label style='float: right;'>
-                                    <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-                                </label> -->
-                            </div>
-    
-                            <br />
-                            <center>
-                                <div class='row'>
-                                    <button type='submit' name='btn_login'
-                                        class='col s12 m12 l12 btn btn-large waves-effect teal teal-text darken-3'>Login</button>
-                                </div>
-                            </center>
                         </form>
-                        <a href="{% url 'register' %}">Create account</a><br>
                     </div>
+                    <!--row-->
+                    <button class="btn waves-effect waves-light center" type="submit">Sign Up</button>
+                    <br>
+                    <br>
+                    Don't have an account? <a href="{% url 'register' %}" class="center-align">Create one</a> now!
                 </div>
-            </center>
-    
-            <div class="section"></div>
-            <div class="section"></div>
-        </main>
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
-        <script type="text/javascript"
-            src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-        </body>
+                <!--card-->
+
+
+            </div>
+            <!--col-->
+        </div>
+        <!--row-->
+    </div>
+    <!--conatiner-->
+
+
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'js/materialize.js' %}"></script>
+</body>
 {% endblock %}
+
 </html>

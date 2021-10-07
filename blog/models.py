@@ -50,3 +50,19 @@ def slug_generator(sender, instance, *args, **kwargs):
         instance.slug = unique_slug_generator(instance)
 
 pre_save.connect(slug_generator, sender=Post)
+
+class Videos(models.Model):
+    file = models.FileField(upload_to='videos', null=True, blank=True)
+    post_date = models.DateTimeField(auto_now_add=True)
+    
+    def __str__(self):
+        return str(self.id)
+    
+    def handle_uploaded_file(f):
+        with open(f.name, 'wb+') as destination:
+            for chunk in f.chunks():
+                destination.write(chunk)
+    
+    class Meta:
+        verbose_name = 'Video'
+        verbose_name_plural = 'Videos'

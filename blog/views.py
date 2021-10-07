@@ -4,10 +4,10 @@ from django.views.generic import ListView, DetailView
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
-from django.http import Http404
+from django.http import Http404, HttpResponseRedirect
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
-from .models import Post, Categories, PostComment
+from .models import Post, Categories, PostComment, Videos
 from .forms import ContactForm
 
 
@@ -15,14 +15,16 @@ from .forms import ContactForm
 def home(request):
        latestpost_list = Post.objects.all().order_by('-post_date')[:3]
        cat_list = Categories.objects.all()
-       context = {'latestpost_list': latestpost_list, 'cat_list':cat_list}
+       videos = Videos.objects.all().order_by('-post_date')[:1]
+       context = {'latestpost_list': latestpost_list, 'cat_list': cat_list, 'videos': videos}
        return render(request, 'blog/index.html', context)
     
     
 def media(request):
       latestpost_list = Post.objects.all().order_by('-post_date')[:3]
       cat_list = Categories.objects.all()
-      context = {'latestpost_list': latestpost_list, 'cat_list':cat_list}
+      videos = Videos.objects.all().order_by('-post_date')[:3]
+      context = {'latestpost_list': latestpost_list, 'cat_list': cat_list, 'videos': videos}
       return render(request, 'blog/media.html', context)
        
 class blog(ListView):
@@ -103,5 +105,6 @@ def contactView(request):
                 send_mail(subject, message, from_email, ['admin@example.com'])
             except BadHeaderError:
                 return HttpResponse('Invalid header found.')
-            return messages.info(request, 'Success! Thank you for your message.')
+            messages.info(request, 'Success! Thank you for your message.')
+            return HttpResponseRedirect('/contact')
     return render(request, "blog/contact.html", {'form': form})
