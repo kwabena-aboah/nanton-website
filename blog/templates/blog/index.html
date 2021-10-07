@@ -89,7 +89,7 @@
         {% if video.file %}
             <div class="col s12 m12 l12 center">
                 <video autoplay="autoplay" preload="preload" class="responsive-video" controls>
-                    <source src="{{ video.file.url }}" type="video/mp4">
+                    <source src="{{ MEDIA_URL }}/{{ video.file.url }}" type="video/mp4">
                 </video>
             </div>
         {% endif %}
