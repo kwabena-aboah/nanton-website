@@ -32,28 +32,19 @@
             <script src="{% static 'js/materialize.js' %}"></script>
             <script>
                 M.AutoInit();
-                // $('.carousel.carousel-slider').carousel({
-                //     fullWidth: true,
-                //     indicators: true
-                // });
+                $(document).ready(function () {
+                    $('.scrollspy').scrollSpy({
+                        throttle: 200,
+                        scrollOffset: 300
+                    });
+                });
+
                 $(document).ready(function () {
                     $('.slider').slider({
                         indicators: false
                     });
                 });
             </script>
-            <!-- <script>
-                $('.head-link').click(function (e) {
-                    e.preventDefault();
-
-                    var goto = $(this).attr('href');
-
-                    $('html, body').animate({
-                        scrollTop: $(goto).offset().top
-                    }, 800);
-                });
-
-            </script> -->
             {% endblock %}
         </footer>
     </body>

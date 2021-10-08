@@ -26,6 +26,13 @@ def media(request):
       videos = Videos.objects.all().order_by('-post_date')[:3]
       context = {'latestpost_list': latestpost_list, 'cat_list': cat_list, 'videos': videos}
       return render(request, 'blog/media.html', context)
+
+
+def profile(request):
+      latestpost_list = Post.objects.all().order_by('-post_date')[:3]
+      cat_list = Categories.objects.all()
+      context = {'latestpost_list': latestpost_list, 'cat_list': cat_list}
+      return render(request, 'blog/profile.html', context)
        
 class blog(ListView):
    model = Post

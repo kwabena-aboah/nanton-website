@@ -15,9 +15,9 @@
             <div class="col s12 m12">
                 <h3 class="center">Contact Us</h3>
                 <div class="row">
-                    <form class="col s12 m12" method="post" action="{% url 'contact' %}">
+                    <form class="col s12 m12" method="post" action="">
+                        {% csrf_token %}
                         <div class="row">
-                            {% csrf_token %}
                             <!-- {{ form.as_p }} -->
                             <div class="input-field col s12 m12">
                                 <input id="id_from_email" type="email" class="validate" name="from_email" required>
